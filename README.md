@@ -1,6 +1,6 @@
 # Razor Syntax & ASP.NET Core Cheatsheet 🚀
 
-Bu rehber, ASP.NET Core'da Razor syntax'ı için kapsamlı bir referans sağlar. Güncel ASP.NET Core versiyonları (6.0+) ile uyumludur.
+Bu rehber, ASP.NET Core'da Razor syntax'ı için kapsamlı bir referans sağlar.
 
 ## 📋 İçindekiler
 
