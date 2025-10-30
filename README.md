@@ -1,6 +1,6 @@
 # Razor Syntax & ASP.NET Core Cheatsheet
 
-Bu rehaber, ASP.NET Core'da Razor syntax'ı için kapsamlı bir referans sağlar.
+Bu rehber, ASP.NET Core'da Razor syntax'ı için kapsamlı bir referans sağlar.
 
 ## 📋 İçindekiler
 
@@ -198,3 +198,96 @@ Bu rehaber, ASP.NET Core'da Razor syntax'ı için kapsamlı bir referans sağlar
 | C# helper method | `@helper RenderText(string t) { <span>@t</span> }` | |
 
 ---
+
+## 🎯 Pratik Örnekler
+
+### Temel View Örneği
+```cshtml
+@page
+@model UrunModel
+
+<h2>@Model.UrunAdi</h2>
+<p>Fiyat: @Model.Fiyat.ToString("C")</p>
+
+@if (Model.Stok > 0)
+{
+    <span class="text-success">Stokta var</span>
+}
+else
+{
+    <span class="text-danger">Stokta yok</span>
+}
+```
+
+### Form Örneği
+```cshtml
+<form asp-action="Kaydet" method="post">
+    <div class="form-group">
+        <label asp-for="Ad"></label>
+        <input asp-for="Ad" class="form-control" />
+        <span asp-validation-for="Ad" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
+```
+
+### Layout Kullanımı
+**_Layout.cshtml:**
+```cshtml
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"] - MyApp</title>
+</head>
+<body>
+    <header>
+        <partial name="_Header" />
+    </header>
+    
+    <main>
+        @RenderBody()
+    </main>
+    
+    <footer>
+        <partial name="_Footer" />
+    </footer>
+    
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+```
+
+**View:**
+```cshtml
+@{
+    ViewData["Title"] = "Ana Sayfa";
+    Layout = "_Layout";
+}
+
+@section Scripts {
+    <script>
+        console.log("Sayfa yüklendi");
+    </script>
+}
+```
+
+---
+
+**Not:** Bu cheatsheet ASP.NET Core 6.0 ve üzeri versiyonlar için günceldir.
+
+## 📚 Ek Kaynaklar
+
+- [ASP.NET Core Documentation](https://docs.microsoft.com/aspnet/core)
+- [Razor Syntax Reference](https://docs.microsoft.com/aspnet/core/mvc/views/razor)
+- [Tag Helpers in ASP.NET Core](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/intro)
+
+---
+
+*⭐ Bu rehber faydalı olduysa yıldız vermeyi unutmayın!*
